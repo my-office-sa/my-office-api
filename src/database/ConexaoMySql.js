@@ -2,10 +2,10 @@ import mysql from "mysql2/promise";
 
 const dbConfig = {
   host: process.env.MYSQL_HOST || "localhost",
-  port: process.env.MYSQL_HOST || "3306",
-  user: process.env.MYSQL_HOST || "root",
-  password: process.env.MYSQL_HOST || "senai",
-  database: process.env.MYSQL_HOST || "aulas_api_senai",
+  port: process.env.MYSQL_PORT || "3306",
+  user: process.env.MYSQL_USER || "root",
+  password: process.env.MYSQL_PWD || "senai",
+  database: process.env.MYSQL_DB || "aulas_api_senai",
 };
 
 class ConexaoMySql {
