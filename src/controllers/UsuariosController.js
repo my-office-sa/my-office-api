@@ -14,7 +14,7 @@ class UsuariosController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "INSERT INTO usuarios (nome, email, celular, senha) VALUES (?, ?, ?, md5(?))";
+        "INSERT INTO usuario (nome, email, celular, senha) VALUES (?, ?, ?, md5(?))";
 
       const [resultado] = await conexao.execute(comandoSql, [
         novoUsuario.nome,
