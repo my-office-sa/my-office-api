@@ -11,7 +11,7 @@ class AutenticacaoController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "SELECT * FROM usuarios WHERE email = ? AND senha = md5(?)";
+        "SELECT * FROM usuario WHERE email = ? AND senha = md5(?)";
 
       const [resultado] = await conexao.execute(comandoSql, [email, senha]);
 

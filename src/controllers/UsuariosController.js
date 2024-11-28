@@ -5,20 +5,21 @@ class UsuariosController {
     try {
       const novoUsuario = req.body;
 
-      if (!novoUsuario.nome || !novoUsuario.email || !novoUsuario.senha) {
+      if (!novoUsuario.nome || !novoUsuario.email || !novoUsuario.senha ||!novoUsuario.celular) {
         resp
           .status(400)
-          .send("Os campos nome, email e senha são obrigatórios.");
+          .send("Os campos nome, email, celular e senha são obrigatórios.");
         return;
       }
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, md5(?))";
+        "INSERT INTO usuarios (nome, email, celular, senha) VALUES (?, ?, ?, md5(?))";
 
       const [resultado] = await conexao.execute(comandoSql, [
         novoUsuario.nome,
         novoUsuario.email,
+        novoUsuario.celular,
         novoUsuario.senha,
       ]);
 
@@ -57,18 +58,19 @@ class UsuariosController {
     try {
       const usuarioEditar = req.body;
 
-      if (!usuarioEditar.id || !usuarioEditar.nome || !usuarioEditar.email) {
-        resp.status(400).send("Os campos id, nome e email são obrigatórios.");
+      if (!usuarioEditar.id || !usuarioEditar.nome ||!usuarioEditar.celular || !usuarioEditar.email) {
+        resp.status(400).send("Os campos id, nome, celular e email são obrigatórios.");
         return;
       }
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "UPDATE usuarios SET nome = ?, email = ?, foto = ? WHERE id = ?";
+        "UPDATE usuario SET nome = ?, email = ?, celular = ?, foto = ? WHERE id_usuario = ?";
 
       const [resultado] = await conexao.execute(comandoSql, [
         usuarioEditar.nome,
         usuarioEditar.email,
+        usuarioEditar.celular,
         usuarioEditar.foto || null,
         usuarioEditar.id,
       ]);
@@ -83,7 +85,7 @@ class UsuariosController {
     try {
       const conexao = await new ConexaoMySql().getConexao();
 
-      const comandoSql = "DELETE FROM usuarios WHERE id = ?";
+      const comandoSql = "DELETE FROM usuario WHERE id_usuario = ?";
       const [resultado] = await conexao.execute(comandoSql, [+req.params.id]);
 
       resp.send(resultado);
