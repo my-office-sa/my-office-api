@@ -38,7 +38,7 @@ class UsuariosController {
       console.log(usuarioLogado);
 
       const conexao = await new ConexaoMySql().getConexao();
-      const comandoSql = "SELECT * FROM usuarios WHERE nome LIKE ?";
+      const comandoSql = "SELECT * FROM usuario WHERE nome LIKE ?";
 
       const filtro = req.query.filtro || "";
       const [resultado] = await conexao.execute(comandoSql, [`%${filtro}%`]);
