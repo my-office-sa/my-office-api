@@ -87,15 +87,15 @@ class UsuariosController {
         "UPDATE sala SET cep = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ? WHERE id_sala = ?";
 
       const [resultado] = await conexao.execute(comandoSql, [
-        novaSala.cep,
-        novaSala.cidade,
-        novaSala.bairro,
-        novaSala.rua,
-        novaSala.numero,
-        novaSala.preco,
-        novaSala.capacidade,
-        novaSala.descricao,
-        novaSala.imagem,
+        editarSala.cep,
+        editarSala.cidade,
+        editarSala.bairro,
+        editarSala.rua,
+        editarSala.numero,
+        editarSala.preco,
+        editarSala.capacidade,
+        editarSala.descricao,
+        editarSala.imagem,
       ]);
 
       resp.send(resultado);
