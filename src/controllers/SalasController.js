@@ -1,6 +1,6 @@
 import ConexaoMySql from "../database/ConexaoMySql.js";
 
-class UsuariosController {
+class SalasController {
   async adicionar(req, resp) {
     try {
       const usuarioLogado = req.headers["x-usuario"];
@@ -37,7 +37,7 @@ class UsuariosController {
         novaSala.capacidade,
         novaSala.descricao,
         novaSala.imagem,
-        usuarioLogado.id_usuario,
+        usuarioLogado,
       ]);
 
       resp.send(resultado);
@@ -118,4 +118,4 @@ class UsuariosController {
   }
 }
 
-export default UsuariosController;
+export default SalasController;
