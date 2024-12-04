@@ -61,6 +61,18 @@ class SalasController {
       resp.status(500).send(error);
     }
   }
+  async listarMinhasSalas(req, resp) {
+    try {
+      const usuarioLogado = req.headers["x-usuario"];
+      const conexao = await new ConexaoMySql().getConexao();
+      const comandoSql = "SELECT * FROM sala WHERE usuario_id = ?";
+
+      const [resultado] = await conexao.execute(comandoSql, [usuarioLogado]);
+      resp.send(resultado);
+    } catch (error) {
+      resp.status(500).send(error);
+    }
+  }
 
   async atualizar(req, resp) {
     try {

@@ -33,6 +33,7 @@ app.get("/usuarios", _usuariosController.listar);
 app.put("/usuarios", _usuariosController.atualizar);
 app.delete("/usuarios/:id", _usuariosController.excluir);
 //salas
+app.get("/minhas-salas", _salasController.listarMinhasSalas);
 app.post("/salas", _salasController.adicionar);
 app.put("/salas", _salasController.atualizar);
 app.delete("/salas/:id", _salasController.excluir);
