@@ -4,7 +4,6 @@ class SalasController {
   async adicionar(req, resp) {
     try {
       const usuarioLogado = req.headers["x-usuario"];
-      console.log(usuarioLogado);
 
       const novaSala = req.body;
 

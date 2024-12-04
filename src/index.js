@@ -15,7 +15,6 @@ const _salasController = new SalasController();
 // rotas públicas
 app.post("/login", _autenticacaoController.login);
 app.post("/usuarios", _usuariosController.adicionar);
-app.post("/salas", _salasController.adicionar);
 app.get("/salas", _salasController.listar);
 
 // Midleware de verificação de usuário logado
@@ -34,6 +33,7 @@ app.get("/usuarios", _usuariosController.listar);
 app.put("/usuarios", _usuariosController.atualizar);
 app.delete("/usuarios/:id", _usuariosController.excluir);
 //salas
+app.post("/salas", _salasController.adicionar);
 app.put("/salas", _salasController.atualizar);
 app.delete("/salas/:id", _salasController.excluir);
 
