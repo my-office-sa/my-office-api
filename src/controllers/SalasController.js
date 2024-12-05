@@ -4,7 +4,6 @@ class SalasController {
   async adicionar(req, resp) {
     try {
       const usuarioLogado = req.headers["x-usuario"];
-
       const novaSala = req.body;
 
       if (
@@ -55,12 +54,7 @@ class SalasController {
       const comandoSql = "SELECT * FROM sala ";
 
       const [resultado] = await conexao.execute(comandoSql);
-      resp.send(
-        resultado.map((u) => {
-          delete u.usuario_id;
-          return u;
-        })
-      );
+      resp.send(resultado);
     } catch (error) {
       resp.status(500).send(error);
     }
