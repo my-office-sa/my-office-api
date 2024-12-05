@@ -25,7 +25,7 @@ class SalasController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "INSERT INTO sala (cep, estado, cidade, bairro, rua, numero, preco, capacidade, descricao, imagem, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO sala (cep, estado, cidade, bairro, rua, numero, preco, capacidade, descricao, imagem, usuario_id,latitude,longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
       const [resultado] = await conexao.execute(comandoSql, [
         novaSala.cep,
@@ -39,6 +39,8 @@ class SalasController {
         novaSala.descricao,
         novaSala.imagem,
         usuarioLogado,
+        novaSala.latitude || null,
+        novaSala.longitude || null,
       ]);
 
       resp.send(resultado);
@@ -98,7 +100,7 @@ class SalasController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "UPDATE sala SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ? WHERE id_sala = ?";
+        "UPDATE sala SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ?, latitude = ?, longitude = ? WHERE id_sala = ?";
 
       const [resultado] = await conexao.execute(comandoSql, [
         editarSala.cep,
@@ -111,6 +113,8 @@ class SalasController {
         editarSala.capacidade,
         editarSala.descricao,
         editarSala.imagem,
+        editarSala.latitude || null,
+        editarSala.longitude || null,
       ]);
 
       resp.send(resultado);
