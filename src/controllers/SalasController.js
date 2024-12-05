@@ -9,6 +9,7 @@ class SalasController {
 
       if (
         !novaSala.cep ||
+        !novaSala.estado ||
         !novaSala.cidade ||
         !novaSala.bairro ||
         !novaSala.rua ||
@@ -24,10 +25,11 @@ class SalasController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "INSERT INTO sala (cep, cidade, bairro, rua, numero, preco, capacidade, descricao, imagem, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO sala (cep, estado, cidade, bairro, rua, numero, preco, capacidade, descricao, imagem, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       const [resultado] = await conexao.execute(comandoSql, [
         novaSala.cep,
+        novaSala.estado,
         novaSala.cidade,
         novaSala.bairro,
         novaSala.rua,
@@ -80,6 +82,7 @@ class SalasController {
 
       if (
         !editarSala.cep ||
+        !editarSala.estado ||
         !editarSala.cidade ||
         !editarSala.bairro ||
         !editarSala.rua ||
@@ -95,10 +98,11 @@ class SalasController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "UPDATE sala SET cep = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ? WHERE id_sala = ?";
+        "UPDATE sala SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ? WHERE id_sala = ?";
 
       const [resultado] = await conexao.execute(comandoSql, [
         editarSala.cep,
+        editarSala.estado,
         editarSala.cidade,
         editarSala.bairro,
         editarSala.rua,
