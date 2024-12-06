@@ -37,9 +37,9 @@ class SalasController {
         novaSala.capacidade,
         novaSala.descricao,
         novaSala.imagem,
-        usuarioLogado,
         novaSala.latitude || null,
         novaSala.longitude || null,
+        usuarioLogado,
       ]);
 
       resp.send(resultado);
