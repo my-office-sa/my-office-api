@@ -94,7 +94,7 @@ class SalasController {
 
       const conexao = await new ConexaoMySql().getConexao();
       const comandoSql =
-        "UPDATE sala SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capadidade =?, descricao = ? , imagem = ?, latitude = ?, longitude = ? WHERE id_sala = ?";
+        "UPDATE sala SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, preco = ?, capacidade =?, descricao = ? , imagem = ?, latitude = ?, longitude = ? WHERE id_sala = ?";
 
       const [resultado] = await conexao.execute(comandoSql, [
         editarSala.cep,
