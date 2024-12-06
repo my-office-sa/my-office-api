@@ -37,9 +37,9 @@ class SalasController {
         novaSala.capacidade,
         novaSala.descricao,
         novaSala.imagem,
+        usuarioLogado,
         novaSala.latitude || null,
         novaSala.longitude || null,
-        usuarioLogado,
       ]);
 
       resp.send(resultado);
@@ -86,7 +86,8 @@ class SalasController {
         !editarSala.preco ||
         !editarSala.capacidade ||
         !editarSala.descricao ||
-        !editarSala.imagem
+        !editarSala.imagem ||
+        !editarSala.id_sala
       ) {
         resp.status(400).send("Nem um valor pode ser em branco");
         return;
@@ -109,6 +110,7 @@ class SalasController {
         editarSala.imagem,
         editarSala.latitude || null,
         editarSala.longitude || null,
+        editarSala.id_sala,
       ]);
 
       resp.send(resultado);
